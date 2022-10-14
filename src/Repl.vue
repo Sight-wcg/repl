@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import SplitPane from './SplitPane.vue'
-import Editor from './editor/Editor.vue'
+//import Editor from './editor/Editor.vue'
+import EditorContainer from './editor/EditorContainer.vue';
+//import CodeMirrorEditor from './editor/CodeMirrorEditor.vue';
+import MonacoEditor from './editor/MonacoEditor.vue';
 import Output from './output/Output.vue'
 import { Store, ReplStore, SFCOptions } from './store'
 import { provide, toRef } from 'vue'
+import { EditorComponentType } from './types';
 
 export interface Props {
   store?: Store
@@ -14,6 +18,9 @@ export interface Props {
   sfcOptions?: SFCOptions
   layout?: string
   ssr?: boolean
+  editor?: EditorComponentType
+  // BuiltinTheme = 'vs' | 'vs-dark' | 'hc-black' | 'hc-light'; 'monaco-volar= 'vs-code-theme-converted'
+  theme: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -22,7 +29,9 @@ const props = withDefaults(defineProps<Props>(), {
   showCompileOutput: true,
   showImportMap: true,
   clearConsole: true,
-  ssr: false
+  ssr: false,
+  editor: MonacoEditor,
+  theme: 'vs'
 })
 
 props.store.options = props.sfcOptions
@@ -32,13 +41,14 @@ provide('store', props.store)
 provide('autoresize', props.autoResize)
 provide('import-map', toRef(props, 'showImportMap'))
 provide('clear-console', toRef(props, 'clearConsole'))
+provide('repl-theme', toRef(props, 'theme'))
 </script>
 
 <template>
   <div class="vue-repl">
     <SplitPane :layout="layout">
       <template #left>
-        <Editor />
+        <EditorContainer :editor-component="editor" />
       </template>
       <template #right>
         <Output

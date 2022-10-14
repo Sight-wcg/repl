@@ -9,12 +9,20 @@ specifiers:
   codemirror: ^5.62.3
   fflate: ^0.7.3
   hash-sum: ^2.0.0
+  monaco-editor-core: ^0.34.0
+  monaco-volar: ^0.0.6
+  onigasm: ^2.2.5
   rimraf: ^3.0.2
   sucrase: ^3.20.1
   typescript: ^4.5.4
   vite: ^3.1.0
   vue: ^3.2.39
   vue-tsc: ^0.40.13
+
+dependencies:
+  monaco-editor-core: 0.34.0
+  monaco-volar: 0.0.6_cruxvslj5wzzn4v6jytedzjmga
+  onigasm: 2.2.5
 
 devDependencies:
   '@babel/types': 7.17.12
@@ -710,6 +718,12 @@ packages:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
     dev: true
 
+  /lru-cache/5.1.1:
+    resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
+    dependencies:
+      yallist: 3.1.1
+    dev: false
+
   /lru-cache/6.0.0:
     resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
     engines: {node: '>=10'}
@@ -728,6 +742,21 @@ packages:
     dependencies:
       brace-expansion: 1.1.11
     dev: true
+
+  /monaco-editor-core/0.34.0:
+    resolution: {integrity: sha512-vyKwADMPe0oNGg+NgxWQCj00IvweeyEGeu0ZiJ14L8HUc5hNvkPAzc8RcSf9lRSpgy4Nc/S63AeqAvARsofObg==}
+    dev: false
+
+  /monaco-volar/0.0.6_cruxvslj5wzzn4v6jytedzjmga:
+    resolution: {integrity: sha512-qBGvbLTJwABtXv2GDWEIwtSeeerscvo3aoXq2Y4WKfHpD60alfVrCo2mTekJ5sbZRRMuSesxaNLcfw8+gDC7CQ==}
+    peerDependencies:
+      monaco-editor-core: ^0.33.0
+      onigasm: ^2.2.5
+    dependencies:
+      monaco-editor-core: 0.34.0
+      onigasm: 2.2.5
+      typesafe-path: 0.2.2
+    dev: false
 
   /mz/2.7.0:
     resolution: {integrity: sha512-z81GNO7nnYMEhrGh9LeymoE4+Yr0Wn5McHIZMK5cfQCl+NDX08sCZgUc9/6MHni9IWuFLm1Z3HTCXu2z9fN62Q==}
@@ -753,6 +782,12 @@ packages:
     dependencies:
       wrappy: 1.0.2
     dev: true
+
+  /onigasm/2.2.5:
+    resolution: {integrity: sha512-F+th54mPc0l1lp1ZcFMyL/jTs2Tlq4SqIHKIXGZOR/VkHkF9A7Fr5rRr5+ZG/lWeRsyrClLYRq7s/yFQ/XhWCA==}
+    dependencies:
+      lru-cache: 5.1.1
+    dev: false
 
   /path-is-absolute/1.0.1:
     resolution: {integrity: sha1-F0uSaHNVNP+8es5r9TpanhtcX18=}
@@ -912,6 +947,10 @@ packages:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
     dev: true
 
+  /typesafe-path/0.2.2:
+    resolution: {integrity: sha512-OJabfkAg1WLZSqJAJ0Z6Sdt3utnbzr/jh+NAHoyWHJe8CMSy79Gm085094M9nvTPy22KzTVn5Zq5mbapCI/hPA==}
+    dev: false
+
   /typescript/4.6.4:
     resolution: {integrity: sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==}
     engines: {node: '>=4.2.0'}
@@ -985,6 +1024,10 @@ packages:
   /wrappy/1.0.2:
     resolution: {integrity: sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=}
     dev: true
+
+  /yallist/3.1.1:
+    resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
+    dev: false
 
   /yallist/4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
