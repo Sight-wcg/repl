@@ -7,10 +7,12 @@ import * as onigasm from 'onigasm';
 import onigasmWasm from 'onigasm/lib/onigasm.wasm?url';
 import editorWorker from 'monaco-editor-core/esm/vs/editor/editor.worker?worker&inline';
 import vueWorker from 'monaco-volar/vue.worker?worker&inline';
-import { editor, KeyCode, KeyMod, Uri } from 'monaco-editor-core';
+import { editor, KeyCode, KeyMod, Uri, languages } from 'monaco-editor-core';
 import { loadGrammars, loadTheme, prepareVirtualFiles } from 'monaco-volar';
 import { inject, nextTick, onBeforeUnmount, onMounted, Ref, ref, shallowRef, watch, watchEffect } from 'vue';
 import { getOrCreateModel } from './utils';
+import layuidts from "./layui-vue.d.ts?raw";
+import { OsPath } from 'typesafe-path';
 
 const props = withDefaults(defineProps<{
   value?: string
@@ -66,6 +68,9 @@ onMounted(() => {
       throw new Error("Cannot find containerRef");
     };
     // Prepare the virtual files.
+    const layuiVueUrl = Uri.parse("file:///node_modules/%40layui/layui-vue.d.ts");
+    const layuiVueModel = getOrCreateModel(layuiVueUrl, undefined, layuidts);
+    languages.vue.vueDefaults.addExtraLib(layuiVueModel.uri.fsPath as OsPath, layuidts)
     prepareVirtualFiles();
     // Create the editor.
     const editorInstance = editor.create(containerRef.value, {
@@ -91,6 +96,7 @@ onMounted(() => {
     editorInstance.onDidChangeModelContent(() => {
       emits('change', editorInstance.getValue());
     });
+
 
     watch(injectTheme, () => {
       //FIXME: 临时
